@@ -3,9 +3,9 @@ package Tie::CPHash;
 #
 # Copyright 1997 Christopher J. Madsen
 #
-# Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
+# Author: Christopher J. Madsen <chris_madsen@geocities.com>
 # Created: 08 Nov 1997
-# Version: 1.000 (15-Jan-1998)
+# Version: 1.001 (25-Oct-1998)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -30,7 +30,7 @@ use vars qw(@ISA $VERSION);
 BEGIN
 {
     # Convert RCS revision number to d.ddd format:
-    $VERSION = sprintf('%d.%03d', '1.000 ' =~ /(\d+)\.(\d+)/);
+    $VERSION = sprintf('%d.%03d', '1.001 ' =~ /(\d+)\.(\d+)/);
 } # end BEGIN
 
 #=====================================================================
@@ -180,7 +180,7 @@ less overhead than B<Tie::CPHash>.
 
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
+Christopher J. Madsen E<lt>F<chris_madsen@geocities.com>E<gt>
 
 =cut
 
