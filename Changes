@@ -1,0 +1,4 @@
+Revision history for Perl extension Tie::CPHash.
+
+1.000  Jan 15 1998
+	- First public release; created by h2xs 1.18
