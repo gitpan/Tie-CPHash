@@ -1,5 +1,9 @@
 Revision history for Perl extension Tie::CPHash.
 
+1.02   Mar 12 2006
+        - Added SCALAR method (thanks to Yitzchak Scott-Thoennes)
+        - updated my email address
+
 1.001  Oct 25 1998
         - updated my email address
 
