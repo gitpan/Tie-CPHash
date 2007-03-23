@@ -1,10 +1,23 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Tie-CPHash
-version:      1.02
-version_from: CPHash.pm
-installdirs:  site
-requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
+---
+name: Tie-CPHash
+version: 1.03
+author:
+  - Christopher J. Madsen <perl@cjmweb.net>
+abstract: Case preserving but case insensitive hash table
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+build_requires:
+  File::Spec: 0
+  FindBin: 0
+  Module::Build: 0.21
+  Test::More: 0
+dynamic_config: 0
+provides:
+  Tie::CPHash:
+    file: lib/Tie/CPHash.pm
+    version: 1.03
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

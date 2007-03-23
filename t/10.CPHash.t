@@ -1,7 +1,6 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl CPHash.t'
+#! /usr/bin/perl
 #---------------------------------------------------------------------
-# $Id: CPHash.t 1271 2006-03-13 02:39:02Z cjm $
+# $Id: 10.CPHash.t 1715 2007-03-22 23:38:37Z cjm $
 # Copyright 1997 Christopher J. Madsen
 #
 # This program is free software; you can redistribute it and/or modify
@@ -16,7 +15,7 @@
 #---------------------------------------------------------------------
 #########################
 
-use Test::More tests => 7;
+use Test::More tests => 16;
 BEGIN { use_ok('Tie::CPHash') };
 
 #########################
@@ -25,6 +24,12 @@ my(%h,$j,$test);
 
 tie(%h, 'Tie::CPHash');
 ok(1, 'tied %h');
+
+isa_ok(tied(%h), 'Tie::CPHash');
+
+is($h{Hello}, undef, "Hello not yet defined");
+
+ok(!exists($h{Hello}), "Hello does not exist");
 
 SKIP: {
   skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
@@ -36,6 +41,8 @@ $j = $h{HeLLo};
 is(           $j => 'World',  'HeLLo - World');
 is((keys %h)[-1] => 'Hello',  'last key Hello');
 
+ok(exists($h{Hello}), "Hello now exists");
+
 $h{World} = 'HW';
 $h{HELLO} = $h{World};
 is(tied(%h)->key('hello') => 'HELLO',  'last key HELLO');
@@ -43,6 +50,23 @@ is(tied(%h)->key('hello') => 'HELLO',  'last key HELLO');
 SKIP: {
   skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
   ok(scalar %h, 'SCALAR not empty');
+};
+
+is(delete $h{Hello}, 'HW',  "deleted Hello");
+is(delete $h{Hello}, undef, "can't delete Hello twice");
+
+SKIP: {
+  skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
+  ok(scalar %h, 'SCALAR still not empty');
+};
+
+is(tied(%h)->key('hello') => undef,  'hello not in keys');
+
+%h = ();
+
+SKIP: {
+  skip 'SCALAR added in Perl 5.8.3', 1 unless $] >= 5.008003;
+  ok(!scalar %h, 'SCALAR now empty');
 };
 
 # Local Variables:
