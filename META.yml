@@ -1,12 +1,14 @@
 ---
 name: Tie-CPHash
-version: 1.03
+version: 1.04
 author:
-  - Christopher J. Madsen <perl@cjmweb.net>
+  - 'Christopher J. Madsen <perl@cjmweb.net>'
 abstract: Case preserving but case insensitive hash table
 license: perl
 resources:
   license: http://dev.perl.org/licenses/
+requires:
+  perl: 5.005
 build_requires:
   File::Spec: 0
   FindBin: 0
@@ -16,8 +18,11 @@ dynamic_config: 0
 provides:
   Tie::CPHash:
     file: lib/Tie/CPHash.pm
-    version: 1.03
-generated_by: Module::Build version 0.2805
+    version: 1.04
+generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2
+no_index:
+  directory:
+    - tools

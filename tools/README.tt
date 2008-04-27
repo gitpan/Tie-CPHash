@@ -1,4 +1,6 @@
-Tie::CPHash  version 1.04, released April 26, 2008
+[% # $Id: README.tt 1999 2008-04-27 01:35:25Z cjm $ %]
+Tie::CPHash  version [%version%], released [%date%]
+
 
 DESCRIPTION
 

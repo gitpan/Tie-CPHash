@@ -1,24 +1,37 @@
 #! /usr/bin/perl
 #---------------------------------------------------------------------
-# $Id: Build.PL 1714 2007-03-22 21:31:33Z cjm $
+# $Id: Build.PL 1999 2008-04-27 01:35:25Z cjm $
 # Copyright 2007 Christopher J. Madsen
 #
 # Build.PL for Tie-CPHash
 #---------------------------------------------------------------------
 
 use strict;
-use warnings;
+#use warnings;         # Wasn't core in 5.005
 
-use FindBin;
-use lib $FindBin::Bin; # Make sure we're using My_Build from our distribution
+use Module::Build;
+eval 'use Module::Build::DistVersion;';
+my $class = ($@ ? Module::Build->subclass(code => q{
+    sub ACTION_distdir {
+      print STDERR <<"END";
+\a\a\a\n
+This module uses Module::Build::DistVersion to automatically copy
+version numbers to the appropriate places.  You might want to install
+that and re-run Build.PL if you intend to create a distribution.
+\n
+END
+      (shift @_)->SUPER::ACTION_distdir(@_);
+    } })
+             : 'Module::Build::DistVersion'); # if we found it
 
-use My_Build;          # Our customized version of Module::Build
-
-my $builder = My_Build->new(
+my $builder = $class->new(
   module_name        => 'Tie::CPHash',
   license            => 'perl',
   dist_author        => 'Christopher J. Madsen <perl@cjmweb.net>',
   dist_version_from  => 'lib/Tie/CPHash.pm',
+  requires => {
+      'perl'          => '5.005',
+  },
   build_requires => {
       'FindBin'       => 0,
       'File::Spec'    => 0,
@@ -27,6 +40,7 @@ my $builder = My_Build->new(
   },
   create_makefile_pl => 'passthrough',
   dynamic_config     => 0,
+  meta_merge         => { no_index  => { directory => [ 'tools' ] }},
 );
 
 $builder->create_build_script();
