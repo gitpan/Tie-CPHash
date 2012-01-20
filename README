@@ -1,16 +1,15 @@
-Tie::CPHash  version 1.04, released April 26, 2008
+Tie-CPHash version 1.05, released January 20, 2012
 
-DESCRIPTION
 
-    This module provides a case preserving but case insensitive hash.
-    This means that
+This module provides a case preserving but case insensitive hash.
+This means that
 
-        $cphash{KEY}    $cphash{key}
-        $cphash{Key}    $cphash{keY}
+    $cphash{KEY}    $cphash{key}
+    $cphash{Key}    $cphash{keY}
 
-    all refer to the same entry.  Also, the hash remembers which form of
-    the key was last used to store the entry.  The `keys' and `each'
-    functions will return the key that was used to set the value.
+all refer to the same entry.  Also, the hash remembers which form of
+the key was last used to store the entry.  The `keys' and `each'
+functions will return the key that was used to set the value.
 
 
 
@@ -18,13 +17,13 @@ INSTALLATION
 
 To install this module, run the following commands:
 
-    perl Build.PL
-    ./Build
-    ./Build test
-    ./Build install
+	perl Makefile.PL
+	make
+	make test
+	make install
 
 While Tie::CPHash should function with any version of Perl 5, the
-build system requires at least Perl 5.005.  To install on older
+build system requires at least Perl 5.006.  To install on older
 versions of Perl, you'll have to manually copy lib/Tie/CPHash.pm to
 your Perl library search path.
 
@@ -32,18 +31,25 @@ your Perl library search path.
 
 DEPENDENCIES
 
-None.
+  Package Minimum Version
+  ------- ---------------
+  perl     5.000
 
 
 
-COPYRIGHT AND LICENCE
+CHANGES
+    Here's what's new in version 1.05 of Tie-CPHash:
+    (See the file "Changes" for the full revision history.)
 
-    Copyright 1997-2008 Christopher J. Madsen
+	- no functional changes
+	- now built with Dist::Zilla (includes v2 META.json)
+	- repository now publicly available on GitHub
 
-    This program is free software; you can redistribute it and/or modify
-    it under the same terms as Perl itself.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
-    GNU General Public License or the Artistic License for more details.
+
+COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Christopher J. Madsen.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
