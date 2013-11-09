@@ -1,4 +1,4 @@
-Tie-CPHash version 1.05, released January 20, 2012
+Tie-CPHash version 1.06, released November 9, 2013
 
 
 This module provides a case preserving but case insensitive hash.
@@ -38,18 +38,17 @@ DEPENDENCIES
 
 
 CHANGES
-    Here's what's new in version 1.05 of Tie-CPHash:
+    Here's what's new in version 1.06 of Tie-CPHash:
     (See the file "Changes" for the full revision history.)
 
 	- no functional changes
-	- now built with Dist::Zilla (includes v2 META.json)
-	- repository now publicly available on GitHub
+	- release tests moved to xt/
 
 
 
 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Christopher J. Madsen.
+This software is copyright (c) 2013 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

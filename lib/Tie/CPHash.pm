@@ -25,8 +25,8 @@ use vars qw($VERSION);
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.05';
-# This file is part of Tie-CPHash 1.05 (January 20, 2012)
+$VERSION = '1.06';
+# This file is part of Tie-CPHash 1.06 (November 9, 2013)
 
 #=====================================================================
 # Tied Methods:
@@ -141,8 +141,8 @@ Tie::CPHash - Case preserving but case insensitive hash table
 
 =head1 VERSION
 
-This document describes version 1.05 of
-Tie::CPHash, released January 20, 2012.
+This document describes version 1.06 of
+Tie::CPHash, released November 9, 2013.
 
 =head1 SYNOPSIS
 
@@ -212,11 +212,11 @@ or through the web interface at
 L<< http://rt.cpan.org/Public/Bug/Report.html?Queue=Tie-CPHash >>.
 
 You can follow or contribute to Tie-CPHash's development at
-L<< http://github.com/madsen/tie-cphash >>.
+L<< https://github.com/madsen/tie-cphash >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Christopher J. Madsen.
+This software is copyright (c) 2013 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
