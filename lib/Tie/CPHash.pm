@@ -17,16 +17,15 @@ package Tie::CPHash;
 # ABSTRACT: Case preserving but case insensitive hash table
 #---------------------------------------------------------------------
 
-require 5.000;
+use 5.006;
 use strict;
-#use warnings;         # Wasn't core until 5.6.0
-use vars qw($VERSION);
+use warnings;
 
 #=====================================================================
 # Package Global Variables:
 
-$VERSION = '1.06';
-# This file is part of Tie-CPHash 1.06 (November 9, 2013)
+our $VERSION = '1.900'; # TRIAL RELEASE
+# This file is part of Tie-CPHash 1.900 (October 4, 2014)
 
 #=====================================================================
 # Tied Methods:
@@ -37,7 +36,11 @@ $VERSION = '1.06';
 
 sub TIEHASH
 {
-    bless {}, $_[0];
+    my $self = bless {}, shift;
+
+    $self->add(\@_) if @_;
+
+    return $self;
 } # end TIEHASH
 
 #---------------------------------------------------------------------
@@ -120,7 +123,31 @@ sub CLEAR
 #=====================================================================
 # Other Methods:
 #---------------------------------------------------------------------
-# Return the case of KEY.
+
+
+sub add
+{
+    my $self = shift;
+    my $list = (@_ == 1) ? shift : \@_;
+    my $limit = $#$list;
+
+    unless ($limit % 2) {
+        require Carp;
+        Carp::croak("Odd number of elements in CPHash add");
+    }
+
+    for (my $i = 0; $i < $limit; $i+=2 ) {
+        $self->{lc $list->[$i]} = [ @$list[$i, $i+1] ];
+    }
+
+    return $self;
+} # end add
+
+# Aliases for Tie::IxHash users:
+*Push    = \&add;
+*Unshift = \&add;
+#---------------------------------------------------------------------
+
 
 sub key
 {
@@ -141,13 +168,13 @@ Tie::CPHash - Case preserving but case insensitive hash table
 
 =head1 VERSION
 
-This document describes version 1.06 of
-Tie::CPHash, released November 9, 2013.
+This document describes version 1.900-TRIAL of
+Tie::CPHash, released October 4, 2014.
 
 =head1 SYNOPSIS
 
     require Tie::CPHash;
-    tie %cphash, 'Tie::CPHash';
+    tie %cphash, 'Tie::CPHash', key => 'value';
 
     $cphash{'Hello World'} = 'Hi there!';
     printf("The key `%s' was used to store `%s'.\n",
@@ -188,7 +215,50 @@ just use C<$hash{lc $key}> instead of C<$hash{$key}>.  This has a lot
 less overhead than Tie::CPHash.
 
 =for Pod::Coverage
-key
+Push
+Unshift
+
+=head1 METHODS
+
+=head2 add
+
+  tied(%h)->add( key => value, ... );
+  tied(%h)->add( \@list_of_key_value_pairs );
+
+This method adds keys and values to the hash.  It's just like
+
+  %hash = @list_of_key_value_pairs;
+
+except that it doesn't clear the hash first.  It accepts either a list
+or an arrayref.  It dies if the list has an odd number of entries.
+
+For people used to L<Tie::IxHash>, C<add> is aliased to both C<Push>
+and C<Unshift>.
+
+
+=head2 key
+
+  $set_using_key = tied(%h)->key( $key )
+
+This method lets you fetch the case of a specific key.  For example:
+
+  $h{HELLO} = 'World';
+  print tied(%h)->key('Hello'); # prints HELLO
+
+If the key does not exist in the hash, it returns C<undef>.
+
+=head1 DIAGNOSTICS
+
+=over
+
+=item Odd number of elements in CPHash add
+
+You passed a list with an odd number of elements to the C<add> method
+(or to C<tie>, which uses C<add>).
+The list must contain a value for each key.
+
+
+=back
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
@@ -216,7 +286,7 @@ L<< https://github.com/madsen/tie-cphash >>.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Christopher J. Madsen.
+This software is copyright (c) 2014 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

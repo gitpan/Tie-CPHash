@@ -1,4 +1,4 @@
-Tie-CPHash version 1.06, released November 9, 2013
+Tie-CPHash version 1.900, released October 4, 2014
 
 
 This module provides a case preserving but case insensitive hash.
@@ -22,33 +22,30 @@ To install this module, run the following commands:
 	make test
 	make install
 
-While Tie::CPHash should function with any version of Perl 5, the
-build system requires at least Perl 5.006.  To install on older
-versions of Perl, you'll have to manually copy lib/Tie/CPHash.pm to
-your Perl library search path.
-
 
 
 DEPENDENCIES
 
   Package Minimum Version
   ------- ---------------
-  perl     5.000
+  perl     5.6.0
+  Carp
 
 
 
 CHANGES
-    Here's what's new in version 1.06 of Tie-CPHash:
+    Here's what's new in version 1.900 of Tie-CPHash:
     (See the file "Changes" for the full revision history.)
 
-	- no functional changes
-	- release tests moved to xt/
+	- new method: add
+	- can now pass an initial list while tying
+	- now requires Perl 5.6.0 or later
 
 
 
 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Christopher J. Madsen.
+This software is copyright (c) 2014 by Christopher J. Madsen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
